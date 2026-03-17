@@ -1,0 +1,370 @@
+{
+  "main": {
+    "id": "7fbfd44f24327332",
+    "type": "split",
+    "children": [
+      {
+        "id": "dcf64deed783e407",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "96d8f4e22dd8d356",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
+            }
+          },
+          {
+            "id": "48cc463177c27775",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "09-Law-Ethics/Cyber Law and IT Act 2000.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Cyber Law and IT Act 2000"
+            }
+          },
+          {
+            "id": "256f6e7d6b5fa8f9",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "01-Home/🏠 Home - Ethical Hacking Hub.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "🏠 Home - Ethical Hacking Hub"
+            }
+          },
+          {
+            "id": "745acf658e902c0d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "06-Tools/WireShark Tool(Flipped Classroom).md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "WireShark Tool(Flipped Classroom)"
+            }
+          },
+          {
+            "id": "07bf8e2b3e3a1bbb",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          },
+          {
+            "id": "156cbfdb1aeb017d",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "a021b073941c7daa",
+    "type": "split",
+    "children": [
+      {
+        "id": "a30bd1305b7f3f92",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f1d14038c1f09f8a",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "3b9ceeb64416d47e",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "083b87b6032aab40",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "79bf95ddbd178fca",
+    "type": "split",
+    "children": [
+      {
+        "id": "dde0c1f1ccea0b20",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4be3a7c5d5a8ac69",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "06-Tools/Netcat - Complete Guide.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Netcat - Complete Guide"
+            }
+          },
+          {
+            "id": "e93605d9603bfb37",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "4061a95bd365e823",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "050d50617d386fc6",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "03d1a490330d3818",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          },
+          {
+            "id": "ebf4ee9df4e682b3",
+            "type": "leaf",
+            "state": {
+              "type": "smart-connections-view",
+              "state": {},
+              "icon": "lucide-ghost",
+              "title": "smart-connections-view"
+            }
+          },
+          {
+            "id": "5b8dc8ff288b396d",
+            "type": "leaf",
+            "state": {
+              "type": "juggl_nodes",
+              "state": {},
+              "icon": "lucide-ghost",
+              "title": "juggl_nodes"
+            }
+          },
+          {
+            "id": "89f9a12d31ae64d5",
+            "type": "leaf",
+            "state": {
+              "type": "juggl_style",
+              "state": {},
+              "icon": "lucide-ghost",
+              "title": "juggl_style"
+            }
+          },
+          {
+            "id": "b2763744508f5c20",
+            "type": "leaf",
+            "state": {
+              "type": "smart-lookup-view",
+              "state": {},
+              "icon": "lucide-ghost",
+              "title": "smart-lookup-view"
+            }
+          },
+          {
+            "id": "5ed44191885bca55",
+            "type": "leaf",
+            "state": {
+              "type": "peerdraft-share-view",
+              "state": {},
+              "icon": "lucide-ghost",
+              "title": "peerdraft-share-view"
+            }
+          },
+          {
+            "id": "c3c8684dc1fa46b6",
+            "type": "leaf",
+            "state": {
+              "type": "juggl_nodes",
+              "state": {},
+              "icon": "ag-node-list",
+              "title": "Juggl nodes"
+            }
+          },
+          {
+            "id": "14a3de4f9eed0a57",
+            "type": "leaf",
+            "state": {
+              "type": "juggl_style",
+              "state": {},
+              "icon": "ag-style",
+              "title": "Juggl style"
+            }
+          },
+          {
+            "id": "ccd73dde085dfae0",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
+            }
+          }
+        ],
+        "currentTab": 12
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
+      "omnisearch:Omnisearch": false,
+      "smart-connections:Smart Connections: Open connections view": false,
+      "smart-connections:Smart Lookup: Open lookup view": false,
+      "smart-connections:Smart Connections: Open random connection": false,
+      "juggl:Juggl global graph": false,
+      "system3-relay:Relay": false,
+      "peerdraft:Show my Peerdraft Shares": false,
+      "obsidian-git:Open Git source control": false
+    }
+  },
+  "active": "f1d14038c1f09f8a",
+  "lastOpenFiles": [
+    "05-Enumeration/SNMP Enumeration.md",
+    "Hacksplosion/PPT Content Rough Idea.md",
+    "Hacksplosion/Industry Research Pipeline.md",
+    "Hacksplosion/Industry research.md",
+    "Hacksplosion/Genw.AI Session 1.md",
+    "Hacksplosion/Documentation.md",
+    "Documentation.md",
+    "Hacksplosion",
+    "12-HTB-Writeups/WingData.md",
+    "Untitled.canvas",
+    "06-Tools/WireShark Tool(Flipped Classroom).md",
+    "08-Network/ARP.md",
+    "01-Home/🏠 Home - Ethical Hacking Hub.md",
+    "12-HTB-Writeups",
+    "09-Law-Ethics/Cyber Law and IT Act 2000.md",
+    "11-MOC/MOC - Questions and Answers.md",
+    "10-QA-Scenarios/QA - Enumeration Scenarios.md",
+    "11-MOC/MOC - Tools.md",
+    "06-Tools/SNMP Tools.md",
+    "04-Scanning/Nmap - Complete Guide.md",
+    "06-Tools/WireShark Tool(Flipped Classroom) (1).md",
+    "10-QA-Scenarios/QA - Netcat Scenarios.md",
+    "10-QA-Scenarios/QA - Footprinting Scenarios.md",
+    "11-MOC/MOC - Ethical Hacking Fundamentals.md",
+    "10-QA-Scenarios/QA - Privilege Escalation Scenarios.md",
+    "03-Reconnaissance/Reconnaissance - Overview.md",
+    "06-Tools/Netcat - Complete Guide.md",
+    "10-QA-Scenarios/QA - Scanning Scenarios.md",
+    "04-Scanning/Types of Port Scans.md",
+    "11-MOC",
+    "New folder",
+    "10-QA-Scenarios",
+    "09-Law-Ethics",
+    "08-Network",
+    "07-Attacks",
+    "06-Tools",
+    "05-Enumeration"
+  ]
+}
