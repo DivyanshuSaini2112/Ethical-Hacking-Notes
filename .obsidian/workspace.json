@@ -11,10 +11,14 @@
             "id": "96d8f4e22dd8d356",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
+              "type": "markdown",
+              "state": {
+                "file": "06-Tools/Metasploit.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Metasploit"
             }
           },
           {
@@ -51,35 +55,16 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "06-Tools/WireShark Tool(Flipped Classroom).md",
+                "file": "Untitled.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "WireShark Tool(Flipped Classroom)"
-            }
-          },
-          {
-            "id": "07bf8e2b3e3a1bbb",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "New tab"
-            }
-          },
-          {
-            "id": "156cbfdb1aeb017d",
-            "type": "leaf",
-            "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
+              "title": "Untitled"
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -227,8 +212,8 @@
             "state": {
               "type": "smart-connections-view",
               "state": {},
-              "icon": "lucide-ghost",
-              "title": "smart-connections-view"
+              "icon": "smart-connections",
+              "title": "Connections"
             }
           },
           {
@@ -327,8 +312,14 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "f1d14038c1f09f8a",
+  "active": "745acf658e902c0d",
   "lastOpenFiles": [
+    "Pasted image 20260318191405.png",
+    "Untitled.md",
+    "Pasted image 20260318191325.png",
+    "Pasted image 20260318191205.png",
+    "06-Tools/WireShark Tool(Flipped Classroom).md",
+    "06-Tools/Metasploit.md",
     "05-Enumeration/SNMP Enumeration.md",
     "Hacksplosion/PPT Content Rough Idea.md",
     "Hacksplosion/Industry Research Pipeline.md",
@@ -339,7 +330,6 @@
     "Hacksplosion",
     "12-HTB-Writeups/WingData.md",
     "Untitled.canvas",
-    "06-Tools/WireShark Tool(Flipped Classroom).md",
     "08-Network/ARP.md",
     "01-Home/🏠 Home - Ethical Hacking Hub.md",
     "12-HTB-Writeups",
@@ -355,9 +345,6 @@
     "11-MOC/MOC - Ethical Hacking Fundamentals.md",
     "10-QA-Scenarios/QA - Privilege Escalation Scenarios.md",
     "03-Reconnaissance/Reconnaissance - Overview.md",
-    "06-Tools/Netcat - Complete Guide.md",
-    "10-QA-Scenarios/QA - Scanning Scenarios.md",
-    "04-Scanning/Types of Port Scans.md",
     "11-MOC",
     "New folder",
     "10-QA-Scenarios",

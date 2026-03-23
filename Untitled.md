@@ -1,0 +1,1 @@
+apply adaboost algorithm upto 1iteration using the following dataset 
