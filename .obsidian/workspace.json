@@ -4,67 +4,51 @@
     "type": "split",
     "children": [
       {
-        "id": "dcf64deed783e407",
+        "id": "3ad4850a476a7dc7",
         "type": "tabs",
         "children": [
           {
-            "id": "96d8f4e22dd8d356",
+            "id": "42f09701b387259e",
             "type": "leaf",
+            "pinned": true,
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "06-Tools/Metasploit.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Metasploit"
+              "type": "juggl_view",
+              "state": {},
+              "pinned": true,
+              "icon": "lucide-ghost",
+              "title": "juggl_view"
             }
           },
           {
-            "id": "48cc463177c27775",
+            "id": "0c776efcfc060065",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "09-Law-Ethics/Cyber Law and IT Act 2000.md",
+                "file": "06-Tools/WireShark Tool(Flipped Classroom).md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Cyber Law and IT Act 2000"
+              "title": "WireShark Tool(Flipped Classroom)"
             }
           },
           {
-            "id": "256f6e7d6b5fa8f9",
+            "id": "8c8dddb2c1dff437",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "01-Home/🏠 Home - Ethical Hacking Hub.md",
+                "file": "12-HTB-Writeups/WingData.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "🏠 Home - Ethical Hacking Hub"
-            }
-          },
-          {
-            "id": "745acf658e902c0d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Untitled.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Untitled"
+              "title": "WingData"
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -312,14 +296,20 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "745acf658e902c0d",
+  "active": "8c8dddb2c1dff437",
   "lastOpenFiles": [
+    "Ddos C2 Botnet/Architecture of C2 botnet army.md",
+    "06-Tools/WireShark Tool(Flipped Classroom).md",
+    "Ddos C2 Botnet",
+    "Untitled",
+    "06-Tools/Netcat - Complete Guide.md",
+    "12-HTB-Writeups/WingData.md",
+    "06-Tools/Metasploit.md",
+    "09-Law-Ethics/Cyber Law and IT Act 2000.md",
+    "01-Home/🏠 Home - Ethical Hacking Hub.md",
     "Pasted image 20260318191405.png",
-    "Untitled.md",
     "Pasted image 20260318191325.png",
     "Pasted image 20260318191205.png",
-    "06-Tools/WireShark Tool(Flipped Classroom).md",
-    "06-Tools/Metasploit.md",
     "05-Enumeration/SNMP Enumeration.md",
     "Hacksplosion/PPT Content Rough Idea.md",
     "Hacksplosion/Industry Research Pipeline.md",
@@ -328,12 +318,9 @@
     "Hacksplosion/Documentation.md",
     "Documentation.md",
     "Hacksplosion",
-    "12-HTB-Writeups/WingData.md",
     "Untitled.canvas",
     "08-Network/ARP.md",
-    "01-Home/🏠 Home - Ethical Hacking Hub.md",
     "12-HTB-Writeups",
-    "09-Law-Ethics/Cyber Law and IT Act 2000.md",
     "11-MOC/MOC - Questions and Answers.md",
     "10-QA-Scenarios/QA - Enumeration Scenarios.md",
     "11-MOC/MOC - Tools.md",
@@ -344,14 +331,11 @@
     "10-QA-Scenarios/QA - Footprinting Scenarios.md",
     "11-MOC/MOC - Ethical Hacking Fundamentals.md",
     "10-QA-Scenarios/QA - Privilege Escalation Scenarios.md",
-    "03-Reconnaissance/Reconnaissance - Overview.md",
     "11-MOC",
     "New folder",
     "10-QA-Scenarios",
     "09-Law-Ethics",
     "08-Network",
-    "07-Attacks",
-    "06-Tools",
-    "05-Enumeration"
+    "07-Attacks"
   ]
 }
